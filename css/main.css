@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+      position: relative;
+  }
+
+  header {
+      font-family: 'Fredericka the Great', cursive;
+      text-align: center;
+      font-size: 30px;
+  }
+
+  .timer {
+      text-align: right;
+      margin-right: 50px;
+  }
+
+  .instruction-box {
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;;
+  }
+
+  .playing-board {
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: repeat(6, 85px);
+    grid-template-rows: 30px, 30px;
+    align-content: center;
+    justify-content: center;
+    border-style: double;
+    margin: 70px;
+  }
+
+  .score-board {
+      margin-left: 50px;
+  }
