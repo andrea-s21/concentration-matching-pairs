@@ -3,18 +3,20 @@
   }
 
   body {
-      position: relative;
+    height: 100vh;
+    display: grid;
+    background: #96afd3;
   }
 
   header {
-      font-family: 'Fredericka the Great', cursive;
-      text-align: center;
-      font-size: 30px;
+    font-family: 'Fredericka the Great', cursive;
+    text-align: center;
+    font-size: 30px;
   }
 
   .timer {
-      text-align: right;
-      margin-right: 50px;
+    text-align: right;
+    margin-right: 50px;
   }
 
   .instruction-box {
@@ -25,23 +27,29 @@
 
   .playing-board {
     display: grid;
-    flex-direction: row;
-    grid-template-columns: repeat(6, 85px);
-    grid-template-rows: 100px, 100px;
+    grid-template-columns: repeat(3, 75px);
+    grid-template-rows: 60px;
+    margin: auto;
+    flex-wrap: wrap;
     align-content: center;
-    justify-content: center;
-    margin: 70px;
+    border: 2px solid blue;
   }
 
-  #card01, #card02, #card03, #card04, #card05, #card06, #card07, #card08, #card09, #card10, #card11, #card12  {
-    display: inline-block;
-    margin: 5px 5px;
-    border-width: 2px;
-    border-color: white;
+  .cards {
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+    position: relative;
+    border: 2px solid aqua;
   }
 
-  span {
-      padding: 0px;
+  .front-face .back-face {
+      width: 50%;
+      height: 50%;
+      padding: 20px;
+      position: absolute;
+      border-radius: 5px;
+      background: turquoise;
   }
 
   .score-board {
