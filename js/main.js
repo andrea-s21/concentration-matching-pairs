@@ -10,11 +10,15 @@ const SOURCE_CARDS = [
     {img: 'https://i.imgur.com/Ss4Xo3x.jpg', matched: false},
 ];
 
-const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
-const DISPLAY_CARD_TIME = 3000;
-const startingSeconds = 59;
-//const cardflipAduio = new Audio('https://www.soundsnap.com/user_interface_design_element_organic_material_business_card_flipping_over_2');
+const sounds = {
+  cardFlipAudio: ('https://assets.codepen.io/7198953/card-flip.mp3'),
+  matchAudio: ('https://assets.codepen.io/7198953/mixkit-winning-notification-2018.mp3'),
+  noMatchAudio: ('https://assets.codepen.io/7198953/mixkit-losing-bleeps-2026.mp3'),
+};
 
+const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
+const DISPLAY_CARD_TIME = 2000;
+const startingSeconds = 59;
 
 /*----- app's state (variables) -----*/
 let cards; //array of source cars x2, shufled 
@@ -22,6 +26,7 @@ let selectedCard;
 let playerScore;
 let ignoreClick;
 let winner;
+let lose;
 let time = startingSeconds;
 let score;
 
@@ -30,13 +35,13 @@ const cardImgEls = document.querySelectorAll('main > img');
 const playerScoreEl = document.querySelector('h3');
 const btnEl = document.querySelector('button');
 const countdownEl = document.getElementById('countdown');
+const player = new Audio();
+
 
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleChoice);
 btnEl.addEventListener('click', init);
-//cardImgEls.addEventListener('click', handleChoice);
-
 
 /*----- functions -----*/
 init();
@@ -48,9 +53,9 @@ function init() {
   score = 0;
   ignoreClick = false;
   winner = false;
+  lose = true;
   render();
   };
-
 
 function handleChoice(evt) {
   const cardIdx = parseInt(evt.target.id);
@@ -61,7 +66,6 @@ function handleChoice(evt) {
       playerScore++;
       selectedCard = null;
     } else if (selectedCard) {
-      // check for match
       if (card.img === selectedCard.img) {
       card.matched = selectedCard.matched = true;
       selectedCard = null;
@@ -96,7 +100,11 @@ function doCountdown() {
 }
 
 function render() {
-  btnEl.style.visibility = winner ? 'visible': 'hidden';
+  if (winner) {
+    btnEl.style.visibility = winner ? 'visible': 'hidden';
+  } else if (startingSeconds === 0) {
+    btnEl.style.visibility = lose ? 'hidden': 'visible';
+  }
   renderBoard();
 }
 
@@ -113,12 +121,12 @@ function buildShuffledCards() {
     }
 }
 
-// function playerScore() {
-//   if (winner === tempCards.length) {
-//     playerScoreEl.innerHTML = scores[score];
-//     scores[winner]++;
-//   }
-// }
+function getWinner() {
+  if (winner === cardIdx.length) {
+    playerScoreEl.innerHTML = scores[score];
+    scores[winner]++;
+  }
+}
 
 function renderBoard () {
     cards.forEach(function(card, idx) {
@@ -126,10 +134,12 @@ function renderBoard () {
         cardImgEls[idx].src = src;
     });
     if (winner) {
-    //playerScoreEl.innerHTML = score[winner]++;
       playerScoreEl.innerHTML = 'You win!';
     } else if (time === 0) {
-      countdownEl.innerHTML = `Out of time. You lose.`;
-      btnEl.style.visibility = 'visible';
+      playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
+    // } else if (time === 0) {
+    //   countdownEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
+    //   countdownEl = doCountdown;
+      //btnEl.style.visibility = 'visible';
     }
 }
