@@ -103,7 +103,6 @@ function render() {
   // ternary expression -> <expression> ? <truthy val> : <falsy val>;
   btnEl.style.visibility = winner ? 'visible' : 'hidden';
   renderBoard();
-  renderbuildShuffledCards();
 }
 
 function buildShuffledCards() {
