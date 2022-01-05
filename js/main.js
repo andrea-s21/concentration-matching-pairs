@@ -1,5 +1,4 @@
 /*----- constants -----*/
-//let lose = numGuesses > MAX_GUESSES;
 const SOURCE_CARDS = [
     {img: 'https://i.imgur.com/ZXPKaiN.jpg', matched: false},
     {img: 'https://i.imgur.com/XMEsZBX.jpg', matched: false},
@@ -13,7 +12,7 @@ const SOURCE_CARDS = [
 
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
 const DISPLAY_CARD_TIME = 3000;
-//let lose = numGuesses > MAX_GUESSES;
+//let lose = numGuesses >= 3;
 
 
 /*----- app's state (variables) -----*/
@@ -26,10 +25,12 @@ let winner;
 /*----- cached element references -----*/
 const cardImgEls = document.querySelectorAll('main > img');
 const badCountEl = document.querySelector('h3');
+const btnEl = document.querySelector('button');
 
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleChoice);
+btnEl.addEventListener('click', init);
 
 
 /*----- functions -----*/
@@ -76,6 +77,26 @@ function init() {
     render();
 }
 
+function render() {
+  // ternary expression -> <expression> ? <truthy val> : <falsy val>;
+  btnEl.style.visibility = winner ? 'visible' : 'hidden';
+  renderBoard();
+  renderMessage();
+  renderCards();
+}
+
+function renderBoard() {
+
+}
+
+function renderMessage() {
+
+}
+
+function renderCards() {
+  
+}
+
 function buildShuffledCards() {
     const tempCards = [];
     cards = [];
@@ -97,6 +118,6 @@ function render () {
     if (winner) {
         badCountEl.innerHTML = 'You Win!';
     } else {
-        badCountEl.innerHTML = `Bad Count: ${badGuess}`;
+        badCountEl.innerHTML = `Bad Count:${badGuess}`;
     }
 }
