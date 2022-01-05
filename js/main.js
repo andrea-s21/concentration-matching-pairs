@@ -12,28 +12,30 @@ const SOURCE_CARDS = [
 
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
 const DISPLAY_CARD_TIME = 3000;
+const startingSeconds = 59;
 //const cardflipAduio = new Audio('https://www.soundsnap.com/user_interface_design_element_organic_material_business_card_flipping_over_2');
 
 
 /*----- app's state (variables) -----*/
 let cards; //array of source cars x2, shufled 
 let selectedCard;
-let badGuess;
+let playerScore;
 let ignoreClick;
 let winner;
+let time = startingSeconds;
 let score;
 
 /*----- cached element references -----*/
 const cardImgEls = document.querySelectorAll('main > img');
-const badCountEl = document.querySelector('h3');
+const playerScoreEl = document.querySelector('h3');
 const btnEl = document.querySelector('button');
-//const countdownEl = document.getElementById('countdown');
+const countdownEl = document.getElementById('countdown');
 
 
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleChoice);
 btnEl.addEventListener('click', init);
-//countdownEl.addEventListener('click', init);
+//cardImgEls.addEventListener('click', handleChoice);
 
 
 /*----- functions -----*/
@@ -42,7 +44,7 @@ init();
 function init() {
   buildShuffledCards();
   selectedCard = null;
-  badGuess = 0;
+  playerScore = 0;
   score = 0;
   ignoreClick = false;
   winner = false;
@@ -50,58 +52,51 @@ function init() {
   };
 
 
-  function handleChoice(evt) {
-    const cardIdx = parseInt(evt.target.id);
-    const card = cards[cardIdx];
-    if (ignoreClick || isNaN(cardIdx) || card.matched) return;
-    if (selectedCard && selectedCard === card) {
-      badGuess++;
+function handleChoice(evt) {
+  const cardIdx = parseInt(evt.target.id);
+  const card = cards[cardIdx];
+  if (ignoreClick || isNaN(cardIdx) || card.matched) return;
+  //if (evt.target.cards !== doCountdown);
+  if (selectedCard && selectedCard === card) {
+      playerScore++;
       selectedCard = null;
     } else if (selectedCard) {
       // check for match
       if (card.img === selectedCard.img) {
-        card.matched = selectedCard.matched = true;
-        selectedCard = null;
-        winner = cards.every(card => card.matched);
+      card.matched = selectedCard.matched = true;
+      selectedCard = null;
+      winner = cards.every(card => card.matched);
       } else {
-        ignoreClick = true;
-        badGuess++;
+      ignoreClick = true;
+      playerScore++;
         // hack/cludge
-        card.matched = true;
-        setTimeout(function() {
-          ignoreClick = false;
-          selectedCard = null;
-          card.matched = false;
-          render();
-        }, DISPLAY_CARD_TIME);
-      }
-    } else {
-      selectedCard = card;
+      card.matched = true;
+      setTimeout(function() {
+        ignoreClick = false;
+        selectedCard = null;
+        card.matched = false;
+      render();
+      }, DISPLAY_CARD_TIME);
     }
-    render();
+      } else {
+        selectedCard = card;
   }
+  render();
+}
 
-// function doCountdown(cb) {
-//   let count = 3;
-//   countdownEl.textContent = count;
-//   countdownEl.style.visibility = 'visible';
-//   countdownAudio.currentTime = 0;
-//   countdownAudio.play();
-//   const timerId = setInterval(function () {
-//     count--;
-//     if (count <= 0) {
-//       clearInterval(timerId);
-//       countdownEl.style.visibility = 'hidden';
-//       cb();
-//     } else {
-//       countdownEl.textContent = count;
-//     }
-//   }, 1000);
-// }
+setInterval(doCountdown, 1000);
+
+function doCountdown() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+  countdownEl.innerHTML = `${minutes}: ${seconds}`
+  time--;
+  time = time-- < 0 ? 0 : time;
+  render();
+}
 
 function render() {
-  // ternary expression -> <expression> ? <truthy val> : <falsy val>;
-  btnEl.style.visibility = winner ? 'visible' : 'hidden';
+  btnEl.style.visibility = winner ? 'visible': 'hidden';
   renderBoard();
 }
 
@@ -118,8 +113,8 @@ function buildShuffledCards() {
     }
 }
 
-// function renderMessage() {
-//   if (winner <= numGuesses) {
+// function playerScore() {
+//   if (winner === tempCards.length) {
 //     playerScoreEl.innerHTML = scores[score];
 //     scores[winner]++;
 //   }
@@ -131,8 +126,10 @@ function renderBoard () {
         cardImgEls[idx].src = src;
     });
     if (winner) {
-        badCountEl.innerHTML = 'You win!';
-    } else {
-        badCountEl.innerHTML = `Wrong Guesses: ${badGuess}`;
+    //playerScoreEl.innerHTML = score[winner]++;
+      playerScoreEl.innerHTML = 'You win!';
+    } else if (time === 0) {
+      countdownEl.innerHTML = `Out of time. You lose.`;
+      btnEl.style.visibility = 'visible';
     }
 }
