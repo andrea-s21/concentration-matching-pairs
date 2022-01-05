@@ -4,44 +4,43 @@
 
 body {
   height: 100vmin;
-  display: flex;
+  padding-top: 50px;
+  padding: 50px;
   justify-content: center;
   align-items: center;
 }
 
-  /* header {
-    font-family: 'Fredericka the Great', cursive;
-    text-align: center;
-    font-size: 30px;
+header {
+  text-align: center;
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 8vmin;
+  color: #bed8fd;
+
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 15vmin);
+  grid-template-rows: repeat(4, 15vmin);
+  gap: 2vmin;
+  padding-top: 1vmin;
+  padding-bottom: 10vmin;
   }
 
-  .timer {
-    text-align: right;
-    margin-right: 50px;
+img {
+  width: 100%;
+  border-radius: 3vmin;
+  box-shadow: 10px 5px 5px darkblue;
   }
 
-  .instruction-box {
-    text-align: center;
-    padding: 10px;
-    font-size: 15px;;
-  } */
+section {
+  text-align: center;
+}
 
-  main {
-    display: grid;
-    grid-template-columns: repeat(4, 15vmin);
-    grid-template-rows: repeat(4, 15vmin);
-    gap: 2vmin;
-  }
-
-  img {
-      width: 100%;
-      border-radius: 3vmin;
-  }
-
-  button {
-    flex-wrap: nowrap;
-    margin-top: 4vmin;
-    padding: 2vmin;
-    font-size: 2vmin;
-    border-radius: 4vmin;
+button {
+  margin-top: 4vmin;
+  padding: 2vmin;
+  font-size: 2vmin;
+  border-radius: 4vmin;
   }
