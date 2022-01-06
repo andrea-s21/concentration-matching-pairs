@@ -1,6 +1,9 @@
-# Concentraion
-## Steps
-##### This game app allows users to play the game of concentration, or matching pairs by allowing the user to slect and reveal two cards at time in an attempt to try and remember and locate cards(squares) with corresponding symbols.
+# ✨ Astrology Concentraion 
+## About Conentration
+##### Also known as Matching Pairs, Concentration is a card game in which all cards begin facing down and the player(s) flip two cards face-up on each turn. The object of the game is to find and turn over all the matching pairs.
+<br></br>
+
+##### This game app, Astrology Concentration, adds a galactic experience to both the user-interface and user-experience. The goal is to find the matching pair to each of the altrologic signs in 60 sconds or less. Can you find them? Play now to see.
 <br></br>
 
 ### 1) Define constants:

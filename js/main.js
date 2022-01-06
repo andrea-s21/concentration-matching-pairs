@@ -34,7 +34,6 @@ const btnEl = document.querySelector('button');
 const countdownEl = document.getElementById('countdown');
 
 
-
 /*----- event listeners -----*/
 document.querySelector('main').addEventListener('click', handleChoice);
 btnEl.addEventListener('click', init);

@@ -68,3 +68,15 @@ button {
   font-family: 'Fredericka the Great', cursive;
   color: #c6d0ecff;
 }
+
+#bg-audio {
+  padding-left: 5vmin;
+  font-family: 'Fredericka the Great', cursive;
+  color: white;
+  text-shadow: 1px 1px #4062bfff;
+}
+
+audio {
+  width: 200px;
+  height: 25px;
+}
