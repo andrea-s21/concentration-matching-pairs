@@ -17,7 +17,7 @@ const sounds = {
 };
 
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
-const DISPLAY_CARD_TIME = 2000;
+const DISPLAY_CARD_TIME = 1000;
 const startingSeconds = 1;
 
 /*----- app's state (variables) -----*/
@@ -27,7 +27,8 @@ let playerScore;
 let ignoreClick;
 let winner;
 let lose;
-let time = startingSeconds * 60;
+let time = startingSeconds;
+let timer;
 let score;
 
 /*----- cached element references -----*/
@@ -61,6 +62,8 @@ function init() {
   ignoreClick = false;
   winner = false;
   lose = false;
+  time = startingSeconds * 60;
+  playerScoreEl = "You have 60 seconds to match all the pairs. There are eight pairs total.";
   render();
   };
 
@@ -99,24 +102,28 @@ function handleChoice(evt) {
 
 function doCountdown() {
   console.log('hitting countdown');
-  const timerID = setInterval(() => {
-    let seconds = time % 60;
+  timer = setInterval(() => {
+  seconds = time % 60;
     countdownEl.innerHTML = `: ${seconds}`
     time--;
-    // time = time < 0 ? 0 : time;
-    setTimeout(checkLoser, 6000)
+    time = time < 0 ? 0 : time;
+    setTimeout(checkWinOrLose, 6000)
   }, 1000);
 }
 
-function checkLoser() {
+function checkWinOrLose() {
   lose = time <= 0 && !cards.every(card => card.matched);
-  if (lose) playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`; 
+  if (lose) {
+    playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`; 
+  } else if(winner){
+    clearTimeout(timer)
+    playerScoreEl.innerHTML = "You win!"
+  }
   ignoreClick === true;
-  btnEl.style.visibility = lose ? 'visible' : 'hidden';
+  btnEl.style.visibility = lose || winner ? 'visible' : 'hidden';
 }
 
 function render() {
-    btnEl.style.visibility = winner ? 'visible': 'hidden';
   renderBoard();
 }
 
@@ -146,14 +153,4 @@ function renderBoard () {
         const src = card.matched || selectedCard === card ? card.img : cardBack;
         cardImgEls[idx].src = src;
     });
-    if (winner) {
-      playerScoreEl.innerHTML = 'You win!';
-    // } else if (time === 0) {
-    //   playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
-    //   btnEl.style.visibility = 'visible';
-    // } else if (time === 0) {
-    //   countdownEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
-    //   countdownEl = doCountdown;
-      //btnEl.style.visibility = 'visible';
-    }
 }
