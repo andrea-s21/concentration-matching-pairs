@@ -18,7 +18,7 @@ const sounds = {
 
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
 const DISPLAY_CARD_TIME = 2000;
-const startingSeconds = 59;
+const startingSeconds = 1;
 
 /*----- app's state (variables) -----*/
 let cards; //array of source cars x2, shufled 
@@ -27,7 +27,7 @@ let playerScore;
 let ignoreClick;
 let winner;
 let lose;
-let time = startingSeconds;
+let time = startingSeconds * 60;
 let score;
 
 /*----- cached element references -----*/
@@ -46,14 +46,21 @@ btnEl.addEventListener('click', init);
 /*----- functions -----*/
 init();
 
+// function handleReset() {
+//   playerScoreEl.innerHTML = "You have 60 seconds to match all the pairs. There are eight pairs total.";
+//   init();
+// }
+
 function init() {
+  console.log('hitting this function');
   buildShuffledCards();
+  doCountdown();
   selectedCard = null;
   playerScore = 0;
   score = 0;
   ignoreClick = false;
   winner = false;
-  lose = true;
+  lose = false;
   render();
   };
 
@@ -88,15 +95,24 @@ function handleChoice(evt) {
   render();
 }
 
-setInterval(doCountdown, 1000);
+
 
 function doCountdown() {
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
-  countdownEl.innerHTML = `${minutes}: ${seconds}`
-  time--;
-  time = time-- < 0 ? 0 : time;
-  render();
+  console.log('hitting countdown');
+  const timerID = setInterval(() => {
+    let seconds = time % 60;
+    countdownEl.innerHTML = `: ${seconds}`
+    time--;
+    // time = time < 0 ? 0 : time;
+    setTimeout(checkLoser, 6000)
+  }, 1000);
+}
+
+function checkLoser() {
+  lose = time <= 0 && !cards.every(card => card.matched);
+  if (lose) playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`; 
+  ignoreClick === true;
+  btnEl.style.visibility = lose ? 'visible' : 'hidden';
 }
 
 function render() {
@@ -105,6 +121,7 @@ function render() {
 }
 
 function buildShuffledCards() {
+    console.log('building shuffled cards');
     const tempCards = [];
     cards = [];
     SOURCE_CARDS.forEach(function(card) {
@@ -131,8 +148,9 @@ function renderBoard () {
     });
     if (winner) {
       playerScoreEl.innerHTML = 'You win!';
-    } else if (time === 0) {
-      playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
+    // } else if (time === 0) {
+    //   playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
+    //   btnEl.style.visibility = 'visible';
     // } else if (time === 0) {
     //   countdownEl.innerHTML = `Out of time. You lose. Select a card to play again.`;
     //   countdownEl = doCountdown;
