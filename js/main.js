@@ -100,11 +100,7 @@ function doCountdown() {
 }
 
 function render() {
-  if (winner) {
     btnEl.style.visibility = winner ? 'visible': 'hidden';
-  } else if (startingSeconds === 0) {
-    btnEl.style.visibility = lose ? 'hidden': 'visible';
-  }
   renderBoard();
 }
 
@@ -121,12 +117,12 @@ function buildShuffledCards() {
     }
 }
 
-function getWinner() {
-  if (winner === cardIdx.length) {
-    playerScoreEl.innerHTML = scores[score];
-    scores[winner]++;
-  }
-}
+// function getWinner() {
+//   if (winner === cardIdx.length) {
+//     playerScoreEl.innerHTML = scores[score];
+//     scores[winner]++;
+//   }
+// }
 
 function renderBoard () {
     cards.forEach(function(card, idx) {

@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  background: #c6d0ecff;
 }
 
 body {
@@ -14,8 +15,26 @@ header {
   text-align: center;
   font-family: 'Fredericka the Great', cursive;
   font-size: 8vmin;
-  color: #bed8fd;
+  color: #4062bfff;
 
+}
+
+#instructions {
+  font-size: 2.5vmin;
+  font-family: 'Fredericka the Great', cursive;
+  color: white;
+}
+
+h3 {
+  font-size: 1.5vmin;
+  font-family: 'Fredericka the Great', cursive;
+  color: #4062bfff;
+}
+
+#countdown {
+  font-size: 2.5vmin;
+  font-family: 'Fredericka the Great', cursive;
+  color: white;
 }
 
 main {
