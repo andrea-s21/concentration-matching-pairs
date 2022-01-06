@@ -8,6 +8,8 @@ const SOURCE_CARDS = [
     {img: 'https://i.imgur.com/QYmN6Hp.jpg', matched: false},
     {img: 'https://i.imgur.com/D5pWE05.jpg', matched: false},
     {img: 'https://i.imgur.com/Ss4Xo3x.jpg', matched: false},
+    {img: 'https://i.imgur.com/nxTA5dz.jpg', matched: false},
+    {img: 'https://i.imgur.com/0O71Cci.jpg', matched: false},
 ];
 
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
@@ -40,11 +42,6 @@ btnEl.addEventListener('click', init);
 /*----- functions -----*/
 init();
 
-// function handleReset() {
-//   playerScoreEl.innerHTML = "You have 60 seconds to match all the pairs. There are eight pairs total.";
-//   init();
-// }
-
 function init() {
   console.log('hitting this function');
   buildShuffledCards();
@@ -56,7 +53,7 @@ function init() {
   winner = false;
   lose = false;
   time = startingSeconds * 60;
-  playerScoreEl.innerHTML = "You have 60 seconds to match all the pairs. There are eight pairs total.";
+  playerScoreEl.innerHTML = 'You have 60 seconds to match all the pairs.';
   render();
   };
 
@@ -103,10 +100,10 @@ function doCountdown() {
 function checkWinOrLose() {
   lose = time <= 0 && !cards.every(card => card.matched);
   if (lose) {
-    playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`; 
+    playerScoreEl.innerHTML = `Oh no! You're out of time. You lose. Would you like to replay?`; 
   } else if(winner) {
     clearTimeout(timer)
-    playerScoreEl.innerHTML = "You win!"
+    playerScoreEl.innerHTML = `You selected all the matches! You win! Would you like to replay?`;
   }
   ignoreClick === true;
   btnEl.style.visibility = lose || winner ? 'visible' : 'hidden';

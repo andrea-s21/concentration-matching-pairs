@@ -14,15 +14,16 @@ body {
 header {
   text-align: center;
   font-family: 'Fredericka the Great', cursive;
-  font-size: 8vmin;
+  font-size: 10vmin;
   color: #4062bfff;
 
 }
 
 #instructions {
-  font-size: 2.5vmin;
+  font-size: 3vmin;
   font-family: 'Fredericka the Great', cursive;
   color: white;
+  text-shadow: 1px 1px #4062bfff;
 }
 
 h3 {
@@ -32,7 +33,7 @@ h3 {
 }
 
 #countdown {
-  font-size: 2.5vmin;
+  font-size: 3vmin;
   font-family: 'Fredericka the Great', cursive;
   color: white;
 }
@@ -40,7 +41,7 @@ h3 {
 main {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(4, 15vmin);
+  grid-template-columns: repeat(5, 15vmin);
   grid-template-rows: repeat(4, 15vmin);
   gap: 2vmin;
   padding-top: 1vmin;
@@ -49,7 +50,7 @@ main {
 
 img {
   width: 100%;
-  border-radius: 3vmin;
+  border-radius: 1.5vmin;
   box-shadow: 10px 5px 5px darkblue;
   }
 
@@ -59,7 +60,11 @@ section {
 
 button {
   margin-top: 4vmin;
-  padding: 2vmin;
-  font-size: 2vmin;
-  border-radius: 4vmin;
+  padding: 1vmin;
+  font-size: 3vmin;
+  border-radius: 1.5vmin;
+  border-color: #c6d0ecff;
+  background-color: #4062bfff;
+  font-family: 'Fredericka the Great', cursive;
+  color: #c6d0ecff;
 }
