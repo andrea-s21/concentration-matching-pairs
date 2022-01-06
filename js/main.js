@@ -10,12 +10,6 @@ const SOURCE_CARDS = [
     {img: 'https://i.imgur.com/Ss4Xo3x.jpg', matched: false},
 ];
 
-const sounds = {
-  cardFlipAudio: ('https://assets.codepen.io/7198953/card-flip.mp3'),
-  matchAudio: ('https://assets.codepen.io/7198953/mixkit-winning-notification-2018.mp3'),
-  noMatchAudio: ('https://assets.codepen.io/7198953/mixkit-losing-bleeps-2026.mp3'),
-};
-
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';
 const DISPLAY_CARD_TIME = 1000;
 const startingSeconds = 1;
@@ -36,7 +30,6 @@ const cardImgEls = document.querySelectorAll('main > img');
 const playerScoreEl = document.querySelector('h3');
 const btnEl = document.querySelector('button');
 const countdownEl = document.getElementById('countdown');
-const player = new Audio();
 
 
 
@@ -63,7 +56,7 @@ function init() {
   winner = false;
   lose = false;
   time = startingSeconds * 60;
-  playerScoreEl = "You have 60 seconds to match all the pairs. There are eight pairs total.";
+  playerScoreEl.innerHTML = "You have 60 seconds to match all the pairs. There are eight pairs total.";
   render();
   };
 
@@ -71,7 +64,6 @@ function handleChoice(evt) {
   const cardIdx = parseInt(evt.target.id);
   const card = cards[cardIdx];
   if (ignoreClick || isNaN(cardIdx) || card.matched) return;
-  //if (evt.target.cards !== doCountdown);
   if (selectedCard && selectedCard === card) {
       playerScore++;
       selectedCard = null;
@@ -83,7 +75,6 @@ function handleChoice(evt) {
       } else {
       ignoreClick = true;
       playerScore++;
-        // hack/cludge
       card.matched = true;
       setTimeout(function() {
         ignoreClick = false;
@@ -98,16 +89,14 @@ function handleChoice(evt) {
   render();
 }
 
-
-
 function doCountdown() {
   console.log('hitting countdown');
   timer = setInterval(() => {
   seconds = time % 60;
-    countdownEl.innerHTML = `: ${seconds}`
+    countdownEl.innerHTML = `: ${seconds}`;
     time--;
     time = time < 0 ? 0 : time;
-    setTimeout(checkWinOrLose, 6000)
+    setTimeout(checkWinOrLose, 6100)
   }, 1000);
 }
 
@@ -115,7 +104,7 @@ function checkWinOrLose() {
   lose = time <= 0 && !cards.every(card => card.matched);
   if (lose) {
     playerScoreEl.innerHTML = `Out of time. You lose. Select a card to play again.`; 
-  } else if(winner){
+  } else if(winner) {
     clearTimeout(timer)
     playerScoreEl.innerHTML = "You win!"
   }
@@ -124,6 +113,7 @@ function checkWinOrLose() {
 }
 
 function render() {
+  btnEl.style.visibility = winner ? 'visible': 'hidden';
   renderBoard();
 }
 
@@ -140,13 +130,6 @@ function buildShuffledCards() {
         cards.push(randomCard);
     }
 }
-
-// function getWinner() {
-//   if (winner === cardIdx.length) {
-//     playerScoreEl.innerHTML = scores[score];
-//     scores[winner]++;
-//   }
-// }
 
 function renderBoard () {
     cards.forEach(function(card, idx) {

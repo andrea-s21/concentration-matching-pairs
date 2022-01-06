@@ -45,27 +45,13 @@ main {
   gap: 2vmin;
   padding-top: 1vmin;
   padding-bottom: 10vmin;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-  }
-
-  .card:hover .content {
-    transform: rotateY( 180deg ) ;
-    transition: transform 0.5s;
-  }
-
+}
 
 img {
   width: 100%;
   border-radius: 3vmin;
   box-shadow: 10px 5px 5px darkblue;
   }
-
-  img, .flipped-box {
-    width: 100%;
-    border-radius: 3vmin;
-    box-shadow: 10px 5px 5px darkblue;
-    }
 
 section {
   text-align: center;
@@ -76,4 +62,4 @@ button {
   padding: 2vmin;
   font-size: 2vmin;
   border-radius: 4vmin;
-  }
+}
