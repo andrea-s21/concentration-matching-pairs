@@ -1,6 +1,6 @@
 /*----- constants -----*/
 const SOURCE_CARDS = [
-  { img: 'https://i.imgur.com/ZXPKaiN.jpg', matched: false },
+  { img: 'https://i.imgur.com/ZXPKaiN.jpg', matched: true },
   { img: 'https://i.imgur.com/XMEsZBX.jpg', matched: false },
   { img: 'https://i.imgur.com/6jX1bMT.jpg', matched: false },
   { img: 'https://i.imgur.com/yKdqsBv.jpg', matched: false },
@@ -17,7 +17,7 @@ const DISPLAY_CARD_TIME = 1000;
 const startingSeconds = 1;
 
 /*----- app's state (variables) -----*/
-let cards; //array of source cars x2, shufled 
+let cards; 
 let selectedCard;
 let playerScore;
 let ignoreClick;
@@ -42,7 +42,6 @@ btnEl.addEventListener('click', init);
 init();
 
 function init() {
-  console.log('hitting this function');
   buildShuffledCards();
   doCountdown();
   selectedCard = null;
@@ -86,7 +85,6 @@ function handleChoice(evt) {
 }
 
 function doCountdown() {
-  console.log('hitting countdown');
   timer = setInterval(() => {
     seconds = time % 60;
     countdownEl.innerHTML = `: ${seconds}`;
@@ -114,7 +112,6 @@ function render() {
 }
 
 function buildShuffledCards() {
-  console.log('building shuffled cards');
   const tempCards = [];
   cards = [];
   SOURCE_CARDS.forEach(function (card) {

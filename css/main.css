@@ -5,10 +5,11 @@
 
 body {
   height: 100vmin;
-  padding-top: 50px;
-  padding: 50px;
+  padding: 30px;
+  border: 30px;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 header {
@@ -59,7 +60,6 @@ section {
 }
 
 button {
-  margin-top: 4vmin;
   padding: 1vmin;
   font-size: 3vmin;
   border-radius: 1.5vmin;
@@ -67,6 +67,10 @@ button {
   background-color: #4062bfff;
   font-family: 'Fredericka the Great', cursive;
   color: #c6d0ecff;
+}
+
+button:hover {
+  color: aliceblue;
 }
 
 #bg-audio {
@@ -77,6 +81,6 @@ button {
 }
 
 audio {
-  width: 200px;
+  width: 300px;
   height: 25px;
 }
