@@ -31,7 +31,7 @@
 <p></p>
 
 ## Getting Started
-[Click here](https://andrea-s21.github.io/concentration-matching-pairs/) to test your memory knowledge.
+[Click here](https://andrea-s21.github.io/concentration-matching-pairs/) to play my game!
 <p></p>
 
 Your goal to select the 10 matching pairs in 60 seconds or less. [Try it now](https://andrea-s21.github.io/concentration-matching-pairs/)!
