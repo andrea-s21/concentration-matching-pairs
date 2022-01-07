@@ -9,7 +9,6 @@ const SOURCE_CARDS = [
   { img: 'https://i.imgur.com/D5pWE05.jpg', matched: false },
   { img: 'https://i.imgur.com/Ss4Xo3x.jpg', matched: false },
   { img: 'https://i.imgur.com/nxTA5dz.jpg', matched: false },
-  { img: 'https://i.imgur.com/0O71Cci.jpg', matched: false },
 ];
 
 const cardBack = 'https://i.imgur.com/WoEmI2M.jpg';

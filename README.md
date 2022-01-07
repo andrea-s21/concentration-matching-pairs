@@ -7,14 +7,22 @@
 <p></p>
 
 ## Screenshots:
-[Game Upon Webpage Load](https://i.imgur.com/t58m9Iy.png)
+[Game Upon Webpage Load](https://i.imgur.com/ZCZ7gR8.png)
 <p></p>
 
-[Finished Game - Winner](https://i.imgur.com/ERA3EpZ.png)
+![This is an image](https://i.imgur.com/ZCZ7gR8.png)
 <p></p>
 
-[Finished Game - Loser](https://i.imgur.com/M60TSuU.png)
+[Finished Game - Winner](https://i.imgur.com/iRAymgP.png)
 <p></p>
+
+![This is an image](https://i.imgur.com/iRAymgP.png)
+
+
+[Finished Game - Loser](https://i.imgur.com/kjYeXlH.png)
+<p></p>
+
+![This is an image](https://i.imgur.com/kjYeXlH.png)
 
 ## Technologies Used: 
 - HTML
